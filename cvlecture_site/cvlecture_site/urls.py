@@ -20,9 +20,6 @@ from django.conf.urls import include, url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'', include('opencv_webapp.urls')),
-<<<<<<< HEAD
     url(r'^dobj/$', views.dface, name='dobj'), # add
-=======
 
->>>>>>> bcde6757cd3e8f462d9e3530d628140754152c24
 ]
