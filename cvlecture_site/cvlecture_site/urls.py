@@ -17,9 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'', include('opencv_webapp.urls')),
-    url(r'^dobj/$', views.dobj, name='dobj'), # add
+    # url(r'^dobj/$', opencv_webapp.views.dobj, name='dobj'), # add
 ]

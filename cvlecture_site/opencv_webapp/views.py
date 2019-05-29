@@ -73,7 +73,7 @@ def dobj(request):
             post.save()
 
             imageURL = settings.MEDIA_URL + form.instance.document.name
-            # opencv_dface(settings.MEDIA_ROOT_URL + imageURL)
+            opencv_dobj(settings.MEDIA_ROOT_URL + imageURL)
 
             return render(request, 'opencv_webapp/dobj.html', {'form': form, 'post': post})
     else:
