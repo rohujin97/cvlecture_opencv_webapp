@@ -3,6 +3,7 @@
 
 # import the necessary packages
 import numpy as np
+import argparse
 import time
 import cv2
 import os
@@ -10,19 +11,19 @@ import os
 
 def opencv_dobj(path):
     # construct the argument parse and parse the arguments
-    # ap = argparse.ArgumentParser()
-    # ap.add_argument("-i", "--image", required=True,
-    #    help="path to input image")
-    # ap.add_argument("-y", "--yolo", required=True,
-    #    help="base path to YOLO directory")
-    # ap.add_argument("-c", "--confidence", type=float, default=0.5,
-    #     help="minimum probability to filter weak detections")
-    # ap.add_argument("-t", "--threshold", type=float, default=0.3,
-    #     help="threshold when applyong non-maxima suppression")
-    # args = vars(ap.parse_args())
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-i", "--image.jpg", required=True,
+       help="path to input image")
+    ap.add_argument("-y", "--yolo", required=True,
+       help="base path to YOLO directory")
+    ap.add_argument("-c", "--confidence", type=float, default=0.5,
+        help="minimum probability to filter weak detections")
+    ap.add_argument("-t", "--threshold", type=float, default=0.3,
+        help="threshold when applyong non-maxima suppression")
+    args = vars(ap.parse_args())
 
     # load the COCO class labels our YOLO model was trained on
-    labelsPath = os.path.sep.join(["yolo-coco", "coco.names"])
+    labelsPath = os.path.sep.join(["opencv_webapp", "yolo-coco", "coco.names"])
     LABELS = open(labelsPath).read().strip().split("\n")
 
     # initialize a list of colors to represent each possible class label
@@ -54,9 +55,9 @@ def opencv_dobj(path):
     blob = cv2.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
                                  swapRB=True, crop=False)
     net.setInput(blob)
-    # start = time.time()
+    start = time.time()
     layerOutputs = net.forward(ln)
-    # end = time.time()
+    end = time.time()
 
     # show timing information on YOLO
     # print("[INFO] YOLO took {:.6f} seconds".format(end - start))
@@ -100,8 +101,8 @@ def opencv_dobj(path):
 
     # apply non-maxima suppression to suppress weak, overlapping bounding
     # boxes
-    idxs = cv2.dnn.NMSBoxes(boxes, confidences, 0.5,
-                            0.3)
+    idxs = cv2.dnn.NMSBoxes(boxes, confidences, args["confidence"],
+                            args["threshold"])
 
     # ensure at least one detection exists
     if len(idxs) > 0:
