@@ -3,10 +3,27 @@
  <head>
   <meta charset="UTF-8">
   <title>Kids PangPang</title>
+     <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+     <style>
+        body{
+            text-align:center;
+            margin-top:50%;
+            background-color:pink;
+
+        }
+     </style>
+
  </head>
 
  <body>
-     <h1>Kids PangPang</h1>
+     <h2>Kids PangPang</h2>
      <a href="{% url 'login' %}"><button>Sign in</button></a>
      <a href="{% url 'join' %}"><button>Sign up</button></a>
 

@@ -3,11 +3,28 @@
  <head>
   <meta charset="UTF-8">
   <title>Title</title>
+               <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+     <style>
+        body{
+            text-align:center;
+            margin-top:40%;
+            background-color:pink;
+        }
+     </style>
+</head>
  </head>
  <body>
 
 <!-- image upload start-->
   <form method="post" enctype="multipart/form-data">
+
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">Upload</button>
@@ -18,7 +35,7 @@
   <p>File uploaded at: <a href="{{ post.document.url }}">{{ post.document }}</a></p>
   {% endif %}
 
-  <p><a href="{% url 'dobj' %}">Return to home</a></p>
+  <p><a href="{% url 'first_view' %}">Return to home</a></p>
 <!-- image upload end -->
 
 </body>
