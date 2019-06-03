@@ -75,7 +75,7 @@ def signin(request):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            return redirect('dobj')
+            return redirect('second_view')
         else:
             return HttpResponse('Login Failed')
     else:
@@ -98,3 +98,8 @@ def dobj(request):
         form = ImageUploadForm()
     return render(request, 'opencv_webapp/dobj.html', {'form': form})
 
+def voca(request):
+    return render(request, 'opencv_webapp/voca.html', {})
+
+def second_view(request):
+    return render(request, 'opencv_webapp/second_view.html', {})

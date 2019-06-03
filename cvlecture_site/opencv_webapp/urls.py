@@ -9,7 +9,8 @@ urlpatterns = [
     url(r'^dobj/$', views.dobj, name='dobj'),
     url(r'^join/$',views.signup, name='join'),
     url(r'^login/$',views.signin, name='login'),
-
+    url(r'^voca/$',views.voca, name='voca'),
+    url(r'^second/$', views.second_view, name='second_view'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
