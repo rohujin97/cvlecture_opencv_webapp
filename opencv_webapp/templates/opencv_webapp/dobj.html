@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+               <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+         <script language="javascript">
+
+
+    var msg = new SpeechSynthesisUtterance();
+    msg.lang = 'en-US';
+
+
+    function ttsTest(tts_text){
+
+        msg.rate = 1; // 0.1 ~ 10
+        msg.pitch = 1; // 0 ~ 2
+
+        msg.text = tts_text;
+        speechSynthesis.speak(msg);
+    }
+    function setLang(langTxt){
+        msg.lang = langTxt;
+    }
+    </script>
+     <style>
+        body{
+            text-align:center;
+            margin-top:40%;
+            background-color:pink;
+        }
+     </style>
+</head>
+ </head>
+ <body>
+
+<!-- image upload start-->
+  <form method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Upload</button>
+  </form>
+
+  {% if post %}
+  <img src="{{ post.document.url }}">
+  <p>File uploaded at: <a href="{{ post.document.url }}">{{ post.document }}</a></p>
+  {% endif %}
+
+  <ul>
+      {% for item in wordlist %}
+            <li class="list-group-item">{{ item }}<button onclick="setLang('en-US'); ttsTest('{{ item }}');">Click</button> </li>
+        {% endfor %}
+  </ul>
+<!--    <% for (int i=0; i< list.length; i++) {%>-->
+<!--        <h3>list : {{ wordlist }}</h3>-->
+<!--    <% } %>-->
+
+<!--<pre>{% debug %}</pre>-->
+
+  <button><a href="{% url 'voca' %}">Voca</a></button>
+  <button><a href="{% url 'second_view' %}">Home</a></button>
+<!-- image upload end -->
+
+</body>
+</html>

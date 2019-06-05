@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Kids PangPang</title>
+     <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
+
+     <script language="javascript">
+
+
+    var msg = new SpeechSynthesisUtterance();
+    msg.lang = 'en-US';
+
+
+    function ttsTest(tts_text){
+
+        msg.rate = 1; // 0.1 ~ 10
+        msg.pitch = 1; // 0 ~ 2
+
+        msg.text = tts_text;
+        speechSynthesis.speak(msg);
+    }
+    function setLang(langTxt){
+        msg.lang = langTxt;
+    }
+    </script>
+
+
+     <style>
+        body{
+            text-align:center;
+            margin-top:20%;
+            background-color:pink;
+
+        }
+        ul{
+            margin:5%;
+            overflow:scroll;
+        }
+     </style>
+
+ </head>
+
+ <body>
+
+
+
+     <h2>Vocabulary</h2>
+<!--    <ul class="list-group">-->
+<!--        {% for item in list %}-->
+<!--            <li class="list-group-item">{{ item }}</li>-->
+<!--        {% endfor %}-->
+<!--        <li class="list-group-item">{{ list.0 }}</li>-->
+<!--        <li class="list-group-item">{{ list.1 }}</li>-->
+<!--        <li class="list-group-item">gggg</li>-->
+<!--        <li class="list-group-item">Coffee</li>-->
+<!--        <li class="list-group-item">Laptop</li>-->
+<!--        <li class="list-group-item">gggg</li>-->
+<!--        <li class="list-group-item">{{ list.0 }}</li>-->
+<!--    </ul>-->
+    <ul>
+      {% for item in wordlist %}
+            <li class="list-group-item">{{ item }} <button onclick="setLang('en-US'); ttsTest('{{ item }}');">Click</button> </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'first_view' %}"><button>Home</button></a>
+ </body>
+
+</html>
